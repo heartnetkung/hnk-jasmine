@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 const glob = require('glob');
 require('shelljs/global');
 
