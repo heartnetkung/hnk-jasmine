@@ -25,7 +25,7 @@ hnk-jasmine is a collection of small helper functions for testing Node.js code i
     - st.DELETE*( route: string, postData: json [, expect: number or regexp]): httpBody as json or text if it can't be parsed
     - st.agent(server) : original supertest object
     
-# usage
+# Usage
 
 co
 ```js
