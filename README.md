@@ -7,7 +7,7 @@ hnk-jasmine is a collection of small helper functions for testing Node.js code i
 - mock
   - this method assumes you use monk (mongodb driver) in your code
   - mock your database for e2e testing. It is fast enough to mock the whole collection for every function calls
-  - add new method db.mock( collectionName: string, data... : json)
+  - add new method db.mock( collectionName: string, data... : json) : Promise
 - gendoc
   - create readme.md documenting everything described by your test case
   - use this script and never have an outdated doc ever again
@@ -18,11 +18,12 @@ hnk-jasmine is a collection of small helper functions for testing Node.js code i
     - inputing number would check for http status
     - inputing regexp would check the response text with http status of 400
   - this method assume you use `koa.js`
-  - new method includes
-    - st.GET( route: string [, expect: number or regexp])
-    - st.POST( route: string, postData: json [, expect: number or regexp])
-    - st.PUT( route: string, postData: json [, expect: number or regexp])
-    - st.DELETE( route: string, postData: json [, expect: number or regexp])
+  - new API includes
+    - st.GET*( route: string [, expect: number or regexp]): httpBody as json or text if it can't be parsed
+    - st.POST*( route: string, postData: json [, expect: number or regexp]): httpBody as json or text if it can't be parsed
+    - st.PUT*( route: string, postData: json [, expect: number or regexp]): httpBody as json or text if it can't be parsed
+    - st.DELETE*( route: string, postData: json [, expect: number or regexp]): httpBody as json or text if it can't be parsed
+    - st.agent(server) : original supertest object
     
 # usage
 
@@ -59,8 +60,8 @@ const sv = app.listen();
 const originalSupertest = st.agent(sv); //in case u need it
 ...
 // in your test
-st.GET('/login');
-st.POST('/login',{username: 'foo', password: 'bar'});
-st.POST('/login',{username: 'foo', password: 'bar'},/login unsuccessful/);
-st.POST('/login',{username: 'foo', password: 'bar'},403);
+yield st.GET('/login');
+yield st.POST('/login',{username: 'foo', password: 'bar'});
+yield st.POST('/login',{username: 'foo', password: 'bar'}, /login unsuccessful/);
+yield st.POST('/login',{username: 'foo', password: 'bar'}, 403);
 ```
