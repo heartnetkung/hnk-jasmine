@@ -11,6 +11,7 @@ hnk-jasmine is a collection of small helper functions for testing Node.js code i
 - gendoc
   - create readme.md documenting everything described by your test case
   - use this script and never have an outdated doc ever again
+  - create npm script `gendoc [glob specifying pattern for spec similar to jasmine command-line input]`
 - supertest
   - properly print stack trace when your server-side code throw exception (and usually returns 500)
   - simplify supertest assertion by the following assumption
