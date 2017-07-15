@@ -7,6 +7,7 @@ hnk-jasmine is a collection of small helper functions for testing Node.js code i
 - mock
   - this method assumes you use monk (mongodb driver) in your code
   - mock your database for e2e testing. It is fast enough to mock the whole collection for every function calls
+  - add new method db.mock( collectionName: string, data... : json)
 - gendoc
   - create readme.md documenting everything described by your test case
   - use this script and never have an outdated doc ever again
@@ -17,15 +18,20 @@ hnk-jasmine is a collection of small helper functions for testing Node.js code i
     - inputing number would check for http status
     - inputing regexp would check the response text with http status of 400
   - this method assume you use `koa.js`
+  - new method includes
+    - st.GET( route: string [, expect: number or regexp])
+    - st.POST( route: string, postData: json [, expect: number or regexp])
+    - st.PUT( route: string, postData: json [, expect: number or regexp])
+    - st.DELETE( route: string, postData: json [, expect: number or regexp])
     
 # usage
 
-- co
+co
 ```js
 // require this in jasmine's helper function or at the top of your file
 require('hnk-jasmine').co()
 ```
-- mock
+mock
 ```js
 // require this in jasmine's helper function or at the top of your file
 const mock = require('hnk-jasmine').mock;
@@ -41,7 +47,7 @@ process.on('SIGINT', () => mock.exitHandler().then(() => process.exit(0)));
 yield db.mock('user', { username: 'user1'}, {username: 'user2'});
 yield db.get('user').find({}); // return above 2 objects
 ```
-- supertest
+supertest
 ```js
 const SuperTest = require('hnk-jasmine').supertest;
 const st = new SuperTest();
