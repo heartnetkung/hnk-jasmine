@@ -1,6 +1,6 @@
 # hnk-jasmine
 
-HNK-Jasmine is a collection of small helper functions for testing Node.js code in Jasmine. It includes:
+hnk-jasmine is a collection of small helper functions for testing Node.js code in Jasmine. It includes:
 - co
   - modify jasmine's `it` function to accept generator function
 - mock
@@ -12,6 +12,6 @@ HNK-Jasmine is a collection of small helper functions for testing Node.js code i
 - supertest
   - properly print stack trace when your server-side code throw exception (and usually returns 500)
   - simplify supertest assertion by the following assumption
-    - every function call must return 200 by default
+    - every http request would check for http status of 200 by default
     - inputing number would check for http status
     - inputing regexp would check the response text with http status of 400
