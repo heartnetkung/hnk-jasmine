@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/heartnetkung/hnk-jasmine#readme",
   "engines": {
-    "node": "^6.0.0"
+    "node": ">=6.0.0"
   },
   "dependencies": {
     "co": "^4.6.0",
