@@ -25,5 +25,5 @@ jasmine.getEnv().addReporter({
 	}
 });
 afterAll(function() {
-	oldWrite.call(process.stdout, '```jade' + str + '\n```');
+	oldWrite.call(process.stdout, '```js' + str + '\n```');
 });
