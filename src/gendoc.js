@@ -9,9 +9,8 @@ for (var i = 0, ii = fileList.length; i < ii; i++) {
 	if (!folders[0])
 		continue;
 	var folder = folders[0].split('/').shift();
-	if(folder === '.')
-		folder = 'API';
-	ShellString(`## ${folder}\n`).to(folder + '/readme.md')
+	var folderName = (folder === '.')? 'API': folder;
+	ShellString(`## ${folderName}\n`).to(folder + '/readme.md')
 	exec(`node node_modules/.bin/jasmine ${fileList[i]} --helper="${__dirname}/gendoc_reporter.js"`, { silent: true })
 		.toEnd(folder + '/readme.md');
 }
